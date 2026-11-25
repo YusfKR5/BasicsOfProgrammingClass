@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785aceb0febf84d418a5534d8deddcbc, type: 3}
+  m_Name: Attack1Data
+  m_EditorClassIdentifier: Assembly-CSharp::AttackData
+  Name: 
+  Animation: 
+  damage: 0
+  chargeDuration: 0
+  fadeOutDuration: 0
+  fadeInDuration: 0
+  teleportDistance: 0
+  intervalBetweenScreenWaves: 0.3
+  intervalBetweenPostProcessNShader: 0.75
+  intervalBeforeResetingPostProcess: 0.35
+  dissolvingDuration: 0.4
+  appearingDuration: 0.5
+  cloneDissolvingDuration: 0.6
+  attackTriggerTime: 1.55
+  teleportTriggerTime: 1.35
+  shockWaveDuration: 0.75
