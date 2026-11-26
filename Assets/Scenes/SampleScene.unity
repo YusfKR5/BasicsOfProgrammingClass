@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &174439656
 Transform:
   m_ObjectHideFlags: 0
@@ -752,9 +752,9 @@ MonoBehaviour:
   BloodVFX: {fileID: 7229689460642281413, guid: 9b3b04d9b06bd694d9be66708d92aa5d, type: 3}
   BloodParticle: {fileID: 961638310958503442, guid: c985e555c6ce452499c8bebaf52f949b, type: 3}
   health: 100
-  maxHealth: 30
+  maxHealth: 100
   delayedHP: 100
-  delayTime: 0.1
+  delayTime: 0.25
   targetHP: 100
   hpBarParent: {fileID: 2091246069}
   healthBar: {fileID: 48414031}
@@ -1109,8 +1109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 67.956, y: -13.476}
-  m_SizeDelta: {x: 135.91, y: 104.7149}
+  m_AnchoredPosition: {x: 4.245, y: -24}
+  m_SizeDelta: {x: 262.68, y: 73.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &240875356
 CanvasRenderer:
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Just a standard slash.
+  m_text: Spiral attack into abyss.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1167,8 +1167,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.1
-  m_fontSizeBase: 18.1
+  m_fontSize: 29.7
+  m_fontSizeBase: 29.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2350,8 +2350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -108}
-  m_SizeDelta: {x: 0, y: -238.2015}
+  m_AnchoredPosition: {x: 0, y: -116}
+  m_SizeDelta: {x: 0, y: -219.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &639635589
 CanvasRenderer:
@@ -2381,7 +2381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A
+  m_text: Spiral Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2408,8 +2408,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 29.7
+  m_fontSizeBase: 29.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -2825,7 +2825,7 @@ GameObject:
   - component: {fileID: 1063616811}
   - component: {fileID: 1063616810}
   m_Layer: 5
-  m_Name: Hp
+  m_Name: HPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3104,14 +3104,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.64378875, b: 0.39296305, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1619158952036731112, guid: 6ce772f5979889a45b5ce895a655e14d, type: 3}
+  m_Sprite: {fileID: 5123809780857316002, guid: 5abe8816a914c4a4281b50793f21bb8f, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3747,7 +3747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1668739371
 Transform:
   m_ObjectHideFlags: 0
@@ -4117,7 +4117,7 @@ GameObject:
   - component: {fileID: 1871616209}
   - component: {fileID: 1871616208}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4513,8 +4513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -63.55, y: 8.7351}
-  m_SizeDelta: {x: 127.1, y: 111.93}
+  m_AnchoredPosition: {x: -14.31, y: 42.53}
+  m_SizeDelta: {x: 225.57, y: 44.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2017091236
 CanvasRenderer:
@@ -4954,7 +4954,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3623302478338868755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.030826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4962,8 +4962,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -108}
-  m_SizeDelta: {x: 0, y: -238.2015}
+  m_AnchoredPosition: {x: 0, y: -113.54999}
+  m_SizeDelta: {x: 0, y: -227.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &615719151464826618
 CanvasRenderer:
@@ -5245,8 +5245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -63.55, y: 8.7351}
-  m_SizeDelta: {x: 127.1, y: 111.93}
+  m_AnchoredPosition: {x: -19.32, y: 46.29}
+  m_SizeDelta: {x: 215.56, y: 36.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3504447740189476382
 MonoBehaviour:
@@ -5584,8 +5584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 67.956, y: -13.476}
-  m_SizeDelta: {x: 135.91, y: 104.7149}
+  m_AnchoredPosition: {x: -0.000030518, y: -23}
+  m_SizeDelta: {x: 241.06, y: 85.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4889445636941173716
 GameObject:
@@ -5775,7 +5775,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A
+  m_text: Abyssal Slash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5802,8 +5802,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 29.4
+  m_fontSizeBase: 29.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -5867,7 +5867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Just a standard slash.
+  m_text: Slash 'em towards abyss.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5894,8 +5894,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.1
-  m_fontSizeBase: 18.1
+  m_fontSize: 29.16
+  m_fontSizeBase: 29.16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

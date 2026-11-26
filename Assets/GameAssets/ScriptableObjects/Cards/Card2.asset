@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActionCard
   cardImage: {fileID: -1225708519962638079, guid: 54923d0f041f24e4ab2b4b994eb902de, type: 3}
   cardID: 1
-  cardName: Attack2
+  cardName: Spiral Attack
   cardType: Attack Card
   cardDescription: Just a standard slash.
   staminaCost: 2

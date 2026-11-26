@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator TakeDamage(float damage)
     {
         targetHP = health - damage;
+        StartCoroutine(SpawnBloodVFX());
         if (targetHP <= 0f)
         {
             targetHP = 0f;
