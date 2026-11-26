@@ -6,6 +6,7 @@ public class EnemyDeathState : IState<EnemyController>
     {
         context.PlayAnim("Death", 0.2f);
         context.StartCoroutine(context.DisplayYouWonScreen());
+        TurnManager.instance.isGameOver = true;
     }
 
     public void ExitState(EnemyController context)

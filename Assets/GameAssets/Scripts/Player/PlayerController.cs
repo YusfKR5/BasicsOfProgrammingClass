@@ -1,6 +1,9 @@
-using UnityEngine;
-using Unity.Cinemachine;
+using DG.Tweening;
 using System.Collections;
+using TMPro;
+using Unity.Cinemachine;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     public bool isAttacking = false;
     public bool canAttack;
+    public bool isDead;
 
     [Header("Animation")]
     public float defaultFadeTime = 0.1f;
@@ -39,6 +43,26 @@ public class PlayerController : MonoBehaviour
     [Header("Masks")]
     public LayerMask groundLayer;
 
+    [Header("VFX")]
+    public GameObject BloodVFX;
+    public GameObject BloodParticle;
+
+    [Header("Porps")]
+    public float health;
+    public float maxHealth;
+    public float delayedHP;
+    public float delayTime;
+    public float targetHP;
+
+    [Header("UI")]
+    public GameObject hpBarParent;
+    public Image healthBar;
+    public Image delayedHealthBar;
+    public TMP_Text healthText;
+    public Color DeathImageColor;
+    public Image DeathImage;
+    public GameObject GameOverPanel;
+
     [HideInInspector] public static PlayerController instance { get; private set; }
     private void Awake()
     {
@@ -63,16 +87,78 @@ public class PlayerController : MonoBehaviour
         stateMachine = new StateMachine<PlayerController>();
 
         stateMachine.Initialize(this, idleState);
+
+        health = maxHealth;
+        targetHP = health;
+        delayedHP = health;
     }
     private void Update()
     {
         stateMachine.Update(this);
+        UpdateHealthBar();
     }
     private void FixedUpdate()
     {
         stateMachine.FixedUpdate(this);
     }
 
+    public IEnumerator SpawnBloodVFX()
+    {
+        yield return new WaitForSeconds(PlayerCombat.instance.hitFreezeDuration);
+        GameObject spawnedBlood = Instantiate(BloodVFX, new Vector3(transform.position.x - 0.1f, transform.position.y - 0.25f, transform.position.z), Quaternion.Euler(0f, 0f, -30f));
+        Destroy(spawnedBlood, 0.25f);
+        GameObject spawnedParticle = Instantiate(BloodParticle, transform.position, Quaternion.Euler(0f, 0f, -55f));
+        //Called on animation event.
+    }
+    public IEnumerator DisplayYouLoseScreen()
+    {
+        GameOverPanel.SetActive(true);
+        DeathImageColor = DeathImage.color;
+        while (DeathImageColor.a < 1)
+        {
+            DeathImageColor.a += Time.deltaTime;
+            DeathImage.color = DeathImageColor;
+            yield return null;
+        }
+        TurnManager.instance.isGameOver = true;
+    }
+    public void UpdateHealthBar()
+    {
+        #region UpdateHPBar
+        healthBar.fillAmount = (health / maxHealth);
+        healthText.text = targetHP.ToString();
+        #endregion
+        #region UpdateDelayedHPBar
+        delayedHealthBar.fillAmount = (delayedHP / maxHealth);
+        #endregion
+    }
+    public IEnumerator TakeDamage(float damage)
+    {
+        targetHP = health - damage;
+        if (targetHP <= 0f)
+        {
+            targetHP = 0f;
+            Death();
+        }
+        else
+        {
+            PlayAnim("Hurt", 0.05f);
+        }
+            Mathf.Clamp(targetHP, 0, maxHealth);
+        yield return DOTween.To(() => health, x => health = x, targetHP, 0.1f);
+        yield return hpBarParent.transform.DOShakePosition(delayTime, 60f, 150, 100f).WaitForCompletion();
+        yield return DOTween.To(() => delayedHP, x => delayedHP = x, targetHP, 0.1f).WaitForCompletion();
+    }
+    public void ReturnToIdle()
+    {
+        PlayAnim("Idle", 0.05f);
+    }
+    public void Death()
+    {
+        isDead = true;
+        PlayAnim("Death", 0.1f);
+        StartCoroutine(DisplayYouLoseScreen());
+    }
     public void PlayAnim(string stateName, float fade = -1f)
     {
         if (currentAnim == stateName) return;

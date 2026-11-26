@@ -71,7 +71,7 @@ public abstract class Attacks : MonoBehaviour
 
         PlayerController.instance.isAttacking = false;
 
-        turnManager.currentTurn++;
+        TurnManager.instance.IncreaseTurnByOne();
     }
     public void StartAttack1()
     {

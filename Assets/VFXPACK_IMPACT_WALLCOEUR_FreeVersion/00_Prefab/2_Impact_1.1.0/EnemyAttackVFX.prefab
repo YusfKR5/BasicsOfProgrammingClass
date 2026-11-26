@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 4739264407584629229}
   - component: {fileID: 7408070339463963709}
   m_Layer: 0
-  m_Name: VFX_ImpactClassic01_1.1.0
+  m_Name: EnemyAttackVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
