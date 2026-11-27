@@ -52,6 +52,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     public TurnManager turnManager;
 
     public static EnemyController instance;
+
+    public GameObject damagePopup;
+
+    public Transform popupTransformLeftBottom;
+    public Transform popupTransformRightTop;
+
     private void Awake()
     {
         #region Singleton
@@ -116,6 +122,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
     public IEnumerator TakeDamage(float damage)
     {
+        Debug.Log("PopUpManager: " + PopUpManager.instance);
+        Debug.Log("DamagePopup: " + damagePopup);
+        Debug.Log("LeftBottom: " + popupTransformLeftBottom);
+        Debug.Log("RightTop: " + popupTransformRightTop);
+        PopUpManager.instance.SpawnPopUP(damagePopup, popupTransformLeftBottom, popupTransformRightTop, damage);
         targetHP = health - damage;
         ChangeState(hitState);
         Mathf.Clamp(targetHP, 0, maxHealth);

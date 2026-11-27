@@ -65,6 +65,12 @@ public class PlayerController : MonoBehaviour
     public Image DeathImage;
     public GameObject GameOverPanel;
 
+    [Header("Popup")]
+    public GameObject damagePopup;
+
+    public Transform popupTransformLeftBottom;
+    public Transform popupTransformRightTop;
+
     [HideInInspector] public static PlayerController instance { get; private set; }
     private void Awake()
     {
@@ -143,6 +149,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator TakeDamage(float damage)
     {
         targetHP = health - damage;
+        PopUpManager.instance.SpawnPopUP(damagePopup, popupTransformLeftBottom, popupTransformRightTop, damage);
         StartCoroutine(SpawnBloodVFX());
         if (targetHP <= 0f)
         {
