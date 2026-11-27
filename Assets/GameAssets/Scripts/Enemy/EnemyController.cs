@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     public EnemyIdleState idleState;
     public EnemyHitState hitState;
     public EnemyDeathState deathState;
+    public EnemyAttackState attackState;
+    public EnemyTransitionState transitionState;
     private StateMachine<EnemyController> stateMachine;
 
     [Header("Prefabs")]
@@ -28,6 +30,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [Header("Porperties")]
     public float health;
     public float maxHealth;
+    public int phase = 1; // phase = -1 means phase 2, it will be setten -1 for the control enum of attack animation names.
 
     public float delayedHP; //For UI impact
     public float delayTime;
@@ -63,12 +66,14 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
         #endregion
 
+        phase = 1;
+
         idleState = new EnemyIdleState();
         hitState = new EnemyHitState();
         deathState = new EnemyDeathState();
+        attackState = new EnemyAttackState();
+        transitionState = new EnemyTransitionState();
         stateMachine = new StateMachine<EnemyController>();
-
-        stateMachine.Initialize(this, idleState);
 
         health = maxHealth;
         delayedHP = health;
@@ -77,15 +82,36 @@ public class EnemyController : MonoBehaviour, IDamageable
         VictoryImage.color = new Vector4(VictoryImage.color.r, VictoryImage.color.g, VictoryImage.color.b, 0f);
         GameOverPanel.SetActive(false);
     }
+    private void Start()
+    {
+        stateMachine.Initialize(this, idleState);
+    }
     private void Update()
     {
         #region UpdateHPBar
         healthBar.fillAmount = (health / maxHealth);
-        healthText.text = targetHP.ToString();
+        healthText.text = ((int)targetHP).ToString();
         #endregion
         #region UpdateDelayedHPBar
         delayedHealthBar.fillAmount = (delayedHP / maxHealth);
         #endregion
+        stateMachine.Update(this);
+
+        Debug.Log(stateMachine.currentState);
+        Debug.Log(turnManager.currentTurn);
+    }
+    private void FixedUpdate()
+    {
+        stateMachine.FixedUpdate(this);
+    }
+    public void ReturnToIdleState()
+    {
+        ChangeState(idleState);
+        //Called on animation event. (After hit anim.)
+    }
+    public void SetPhase2()
+    {
+        phase = -1;
     }
     public IEnumerator TakeDamage(float damage)
     {
@@ -100,10 +126,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         StartCoroutine(TakeDamage(damage));
     }
-    public void ReturnIdleStateFromHit()
-    {
-        ChangeState(idleState);
-    }
     public void ChangeState(IState<EnemyController> newState)
     {
         stateMachine.ChangeState(this, newState);
@@ -117,12 +139,18 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
     public void PlayAnim(string stateName, float fade = -1f)
     {
+        Debug.Log("PlayAnim: '" + stateName + "'");
+
         if (currentAnim == stateName) return;
         currentAnim = stateName;
 
         float f = fade < 0f ? defaultFadeTime : fade;
         if (f <= 0f) animator.Play(stateName, 0);
         else animator.CrossFadeInFixedTime(stateName, f, 0);
+    }
+    public bool CheckAttackState()
+    {
+        return stateMachine.currentState == attackState;
     }
     public IEnumerator DisplayYouWonScreen()
     {

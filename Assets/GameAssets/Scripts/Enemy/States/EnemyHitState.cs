@@ -5,7 +5,10 @@ public class EnemyHitState : IState<EnemyController>
     public void EnterState(EnemyController context)
     {
         if (context.targetHP > 0)
-            context.PlayAnim("Hit", 0.1f);
+            if (context.phase == 1)
+                context.PlayAnim("Hit", 0.1f);
+            else
+                context.PlayAnim("HitPhase2", 0.1f);
         else
         {
             context.isDead = true;

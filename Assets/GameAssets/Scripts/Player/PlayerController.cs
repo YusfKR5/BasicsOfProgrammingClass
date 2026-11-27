@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public Attack1State attack1State;
     public Attack2State attack2State;
     public Attack3State attack3State;
+    public HurtState hurtState;
+    public DeathState deathState;
 
     [Header("SFX")]
     public AudioClip attack1SFX;
@@ -84,6 +86,8 @@ public class PlayerController : MonoBehaviour
         attack1State = new Attack1State();
         attack2State = new Attack2State();
         attack3State = new Attack3State();
+        hurtState = new HurtState();
+        deathState = new DeathState();
         stateMachine = new StateMachine<PlayerController>();
 
         stateMachine.Initialize(this, idleState);
@@ -132,6 +136,10 @@ public class PlayerController : MonoBehaviour
         delayedHealthBar.fillAmount = (delayedHP / maxHealth);
         #endregion
     }
+    public void Hurt()
+    {
+        ChangeState(hurtState);
+    }
     public IEnumerator TakeDamage(float damage)
     {
         targetHP = health - damage;
@@ -156,9 +164,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Death()
     {
-        isDead = true;
-        PlayAnim("Death", 0.1f);
-        StartCoroutine(DisplayYouLoseScreen());
+        ChangeState(deathState);
     }
     public void PlayAnim(string stateName, float fade = -1f)
     {

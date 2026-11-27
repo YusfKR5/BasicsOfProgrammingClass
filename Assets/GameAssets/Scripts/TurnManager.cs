@@ -25,14 +25,10 @@ public class TurnManager : MonoBehaviour
     public void IncreaseTurnByOne()
     {
         currentTurn++;
-        EnemyCombat.instance.StartAttack();
-    }
-    public IEnumerator IncreaseTurn()
-    {
-        yield return new WaitForSeconds(1f);
-        currentTurn++;
-        if (!isGameOver)
-            EnemyCombat.instance.StartAttack();
+        if (currentTurn % 2 == 0 && !EnemyController.instance.CheckAttackState() && !isGameOver)
+        {
+            EnemyController.instance.ChangeState(new EnemyAttackState());
+        }
     }
 }
     

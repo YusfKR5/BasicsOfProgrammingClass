@@ -4,7 +4,10 @@ public class EnemyIdleState : IState<EnemyController>
 {
     public void EnterState(EnemyController context)
     {
-        context.PlayAnim("Idle", 0.1f);
+        if (context.phase == 1)
+            context.PlayAnim("Idle", 0.1f);
+        else
+            context.PlayAnim("IdlePhase2", 0.1f);
     }
 
     public void ExitState(EnemyController context)
