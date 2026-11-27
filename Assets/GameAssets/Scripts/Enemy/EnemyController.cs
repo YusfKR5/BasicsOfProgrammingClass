@@ -19,7 +19,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     public EnemyIdleState idleState;
     public EnemyHitState hitState;
     public EnemyDeathState deathState;
-    public EnemyAttackState attackState;
+    public EnemyAttackState attackState; //For attackState i'm creating a new instance for every state transitions. Otherwise it doesnt variate the animations. Will be fixed. 
+    //attackState transition is held on the TurnManager script. Checking the turn order just after increasing the currentTurn.
     public EnemyTransitionState transitionState;
     private StateMachine<EnemyController> stateMachine;
 
